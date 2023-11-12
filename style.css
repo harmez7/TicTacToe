@@ -1,0 +1,159 @@
+*, *::before, * ::after {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+/* CREATE THE BOARD */
+.board {
+  width: 100vw;
+  height: 100vh;
+  display: grid;
+  justify-content: center;
+  /* justify-items: center; */
+  align-content: center;
+  /* align-items: center; */
+  grid-template-columns: repeat(3, auto);
+  background-color: #ffebcd;
+}
+
+/* STYLE THE CELLS */
+.cell {
+  width: 100px;
+  height: 100px;
+  border: 1px solid #008000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+/* ------------------------------ */
+/* REMOVE TOP BORDERS */
+.cell:first-child,
+.cell:nth-child(2),
+.cell:nth-child(3) {
+  border-top: none;
+}
+
+/* REMOVE LEFT BORDERS */
+.cell:nth-child(3n + 1) {
+  border-left: none;
+}
+
+/* REMOVE RIGHT BORDERS */
+.cell:nth-child(3n + 3) {
+  border-right: none;
+}
+
+/* REMOVE BOTTOM BORDERS */
+.cell:nth-child(1n + 7) {
+  border-bottom: none;
+}
+/* ------------------------------ */
+
+
+
+/* SET GENERAL MARK COLOR */
+.cell.x::before,
+.cell.o::before,
+.cell.x::after,
+.cell.o::after {
+  background-color: #000000;
+}
+
+/* SET THE HOVER COLOR FOR EMPTY CELLS */
+.board.x .cell:not(.x).cell:not(.o):hover::before,
+.board.x .cell:not(.x).cell:not(.o):hover::after,
+.board.o .cell:not(.x).cell:not(.o):hover::before,
+.board.o .cell:not(.x).cell:not(.o):hover::after {
+  background-color: #b8b091;
+}
+
+.cell.x, .cell.o{
+  cursor: not-allowed;
+}
+
+
+
+/* ------------------------------ */
+/* CREATE THE X AND IT'S HOVER EFFECT*/
+.cell.x::before,
+.cell.x::after,
+.board.x .cell:not(.x).cell:not(.o):hover:before,
+.board.x .cell:not(.x).cell:not(.o):hover::after {
+  content: '';
+  width: 20px;
+  height: 90px;
+  position: absolute;
+}
+.cell.x::before,
+.board.x .cell:hover::before {
+  transform: rotate(45deg);
+}
+.cell.x::after,
+.board.x .cell:hover::after {
+  transform: rotate(-45deg);
+}
+/* ------------------------- */
+
+/* CREATE THE O AND IT'S HOVER EFFECT*/
+.cell.o::before,
+.board.o .cell:not(.x).cell:not(.o):hover:before {
+  content: '';
+  position: absolute;
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+}
+
+.cell.o::after,
+.board.o .cell:not(.x).cell:not(.o):hover::after {
+  content: '';
+  position: absolute;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background-color: #ffebcd;
+}
+/* ------------------------------ */
+
+/* -------THE RESULT MESSAGE STYLE ---------*/
+.resultContainer {
+  display: none;
+}
+
+.resultContainer.show {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: #000000cc;
+  font-size: 6rem;
+}
+
+.resultText {
+  color: #9acd32;
+}
+
+.restartButton{
+  padding: 5px 10px;
+  margin-top: 2rem;
+  font-size: 2rem;
+  color: #9acd32;
+  background-color: black;
+  border: 2px solid #9acd32;
+  border-radius: 5px;
+  transition: color .2s;
+  cursor: pointer;
+}
+.restartButton:hover{
+  background-color: #9acd32;
+  color: black;
+  border: 2px solid #000000;
+}
+/* ---------------------------------- */
